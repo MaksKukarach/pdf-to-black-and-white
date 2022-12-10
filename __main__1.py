@@ -12,24 +12,19 @@ def convert_pdf2jpg(pages):
     
     print('[Successfully converted .pdf to .jpg]')
 
-# convert using img2pdf
-def convert_img2pdf(file_length: int, output_name='result',input_folder='processed-files'):
+def convert_img2pdf(file_length: int, output_name='result'):
     with open(f'output-files\{output_name}', 'wb') as output_file:
-        pages_list = [f'{input_folder}\page{i}.jpg' for i in range(file_length)]
+        pages_list = [f'processed-files\page{i}.jpg' for i in range(file_length)]
         output_file.write(img2pdf.convert(pages_list))
     
     print('[Successfully merged the .pdf file]')
 
-# convert using fpdf. decide later which way is better
-# def convert_img2pdf(file_length: int, input_folder='processed-files'):
-#     pdf = FPDF()
-#     list_of_images = [f'{input_folder}\page{i}.jpg' for i in range(file_length)]
-#     for image in list_of_images:
-#         pdf.add_page()
-#         pdf.image(image)
-#     pdf.output('output-files\output.pdf', 'F')
-    
-#     print('[Successfully merged the .pdf file]')
+def convert_images2pdf(file_length: int, result_name: str):
+    with open(f'Program\output-files\{result_name}', 'wb') as result:
+        pages_list = [f'Program\processed files\page{i}.jpg' for i in range(file_length)]
+        result.write(img2pdf.convert(pages_list.encode()))
+    print('[Successfully merged the .pdf file]')
+
 
 def convert_images_to_black_and_white(file_length: int, input_folder='processed-files'):
     for i in range(file_length):
@@ -40,7 +35,6 @@ def convert_images_to_black_and_white(file_length: int, input_folder='processed-
         cv2.imwrite(f'processed-files/page{i}.jpg', blackAndWhiteImage)
     
     print('[Successfully applied black-and-white filter]')
-
 
 def get_file_name():
     print('First, put your pdf file into "input-files" folder.')
@@ -61,7 +55,6 @@ def main():
     input_file = convert_from_path(input_path, 300)
     file_length = len(input_file)
 
-    
     convert_pdf2jpg(input_file)
     convert_images_to_black_and_white(file_length=file_length)
     convert_img2pdf(file_length=file_length, output_name=file_name)
