@@ -14,4 +14,4 @@ How to add folders to PATH: https://www.architectryan.com/2018/03/17/add-to-the-
 ### FOR EVERYONE:<br>
 You can adjust the threshold by changing *the first number in brackets in line 39* (with higher values more content will result black)<br>
 I am glad to recieve your feedback about this project.<br>
-**Enjoy :3)**
+**Enjoy :3**
