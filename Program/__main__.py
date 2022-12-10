@@ -32,6 +32,9 @@ def convert_images2pdf(result_name: str):
     with open(f'Program\output-files\{result_name}', 'wb') as result:
         pages_list = [f'Program\processed-files\{file}' for file in os.listdir('Program\processed-files')]
         result.write(img2pdf.convert(pages_list))
+    path = 'Program\\processed-files\\'
+    for file in os.listdir(path):
+        os.remove(path + file)
     print('[Successfully merged the .pdf file]')
 
 def apply_binary_to_images():
