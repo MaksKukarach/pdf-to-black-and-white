@@ -1,7 +1,7 @@
 ## Apply black-and-white binary scale to pdf. *(not grayscale)* <br>
 
-![Before.png](images/sample-before.png "Before")
-![After.png](images/sample-after.png "After")
+![Before1.png](images/sample1before.png "Before") ![After1.png](images/sample1after.png "After")
+![Before2.png](images/sample2before.png "Before") ![After2.png](images/sample2after.png "After")
 
 ### When opened for the first time:<br>
     $ pip install pdf2img  
