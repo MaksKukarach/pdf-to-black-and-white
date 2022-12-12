@@ -4,27 +4,27 @@ import img2pdf
 import os
 
 def main():
-    print('With this tool you can easily convert your pdf to black-and-white binary (not grayscale)')
-
+    print()
+    print('Welcome!')
     file_name = get_file_name()
+    print()
     print('[Starting...]')
 
     input_path = f'Program\input-files\{file_name}'
-    # extract pdf from input_path with a certain dpi
     file = convert_from_path(input_path, 300)
-
     convert_pdf2jpg(file)
     apply_binary_to_images()
     convert_images2pdf(result_name=file_name)
 
     print()
     print('Done! You can now get your file from "output-files" folder.')
+    print()
 
-def convert_pdf2jpg(pages):
-    file_length = len(pages)
+def convert_pdf2jpg(file):
+    file_length = len(file)
     for i in range(file_length):
         # Save pages as images
-        pages[i].save(f'Program\processed-files\page{i}.jpg', 'JPEG')
+        file[i].save(f'Program\processed-files\page{i}.jpg', 'JPEG')
         print(f'[Pages processed: {i+1}/{file_length}]')
     print('[Successfully converted .pdf to .jpg]')
 
@@ -32,13 +32,14 @@ def convert_images2pdf(result_name: str):
     with open(f'Program\output-files\{result_name}', 'wb') as result:
         pages_list = [f'Program\processed-files\{file}' for file in os.listdir('Program\processed-files')]
         result.write(img2pdf.convert(pages_list))
+    # Delete obsolete middle files
     path = 'Program\\processed-files\\'
     for file in os.listdir(path):
         os.remove(path + file)
     print('[Successfully merged the .pdf file]')
 
 def apply_binary_to_images():
-    # apply same binary scale to each file in processed-files folder
+    # Apply same binary scale to each file in processed-files folder
     for i, file in enumerate(os.listdir('Program\processed-files')):
         path = f'Program\processed-files\{file}'
 
